@@ -1,12 +1,11 @@
-﻿using ContosoUniversity.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Data
 {
-    public class SchoolContext : DbContext
+    public class LicznikiContext : DbContext
     {
 
-        public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
+        public LicznikiContext(DbContextOptions<LicznikiContext> options) : base(options)
         {
         }
 
