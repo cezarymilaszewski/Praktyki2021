@@ -29,26 +29,6 @@ namespace ContosoUniversity.Controllers
             _iServiceLicznik = new ServiceLiczniki(licznikiContext);
         }
 
-        [Route("{licznikId:int}")]
-        [HttpGet]
-        [ProducesResponseType(typeof(LicznikiDto), (int) HttpStatusCode.OK)]
-        [ProducesResponseType((int) HttpStatusCode.NotFound)]
-        [ProducesResponseType((int) HttpStatusCode.BadRequest)]
-        public async Task<ActionResult> GetLicznikAsync(int licznikId)
-        {
-            try
-            {
-                var licznikDto =  _iServiceLicznik.Get(licznikId);
-                if (licznikDto == null)
-                    return NotFound();
-
-                return Ok(licznikDto);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
 
 
 
