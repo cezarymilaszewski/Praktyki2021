@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Liczniki.Logic;
+﻿using Liczniki.Logic;
 using Liczniki.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace Liczniki.Controllers

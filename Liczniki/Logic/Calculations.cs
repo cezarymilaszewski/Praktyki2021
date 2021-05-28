@@ -1,5 +1,5 @@
-﻿using Liczniki.Models;
-using Liczniki.Controllers;
+﻿using Liczniki.Controllers;
+using Liczniki.Models;
 using System;
 
 namespace Liczniki.Logic

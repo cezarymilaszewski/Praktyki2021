@@ -9,10 +9,10 @@ namespace Liczniki.Models
         {
             public int Id { get; set; }
             public float Liczba { get; set; }
-            
+
             public float LicznikGazDom { get; set; }
             public float LicznikGazBiura { get; set; }
-            
+
             public float LicznikWodaDom { get; set; }
             public float LicznikWodaBiura { get; set; }
             public float LicznikWodaZimnaAzmar { get; set; }

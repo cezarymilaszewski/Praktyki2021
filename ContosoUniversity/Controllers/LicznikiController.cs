@@ -26,7 +26,7 @@ namespace ContosoUniversity.Controllers
 
             if (licznik == null) return NotFound();
 
-            return licznik;
+            return Ok(licznik);
         }
 
         [HttpPost]
