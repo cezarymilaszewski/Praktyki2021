@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Routing;
 
 
 namespace ContosoUniversity.Controllers
+
+
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,22 +21,30 @@ namespace ContosoUniversity.Controllers
         private readonly IServiceLicznikDane _iServiceLicznikDane;
         private LicznikiContext _licznikiContext;
 
-        [HttpGet("{id:int}", Name = "Get")]
+
+        public LicznikiDaneController(LicznikiContext licznikiContext)
+        {
+            _licznikiContext = licznikiContext;
+            _iServiceLicznikDane = new ServiceLicznikiDane(licznikiContext);
+        }
+
+
+        [HttpGet("{id:int}", Name = "dane")]
         public ActionResult<LicznikiDaneDto> Get(int id)
         {
             var licznikDaneDto = _iServiceLicznikDane.Get(id);
 
             if (licznikDaneDto == null) return NotFound();
 
-            return Ok(licznikDaneDto);
+            return licznikDaneDto;
         }
 
 
         [HttpPost]
         public ActionResult<LicznikiDaneDto> Create(LicznikiDaneDto licznikiDaneDto)
         {
-           var Id =  _iServiceLicznikDane.Add(licznikiDaneDto);
-           return CreatedAtRoute("Get", new { id = licznikiDaneDto.Id }, licznikiDaneDto);
+            _iServiceLicznikDane.Add(licznikiDaneDto);
+            return CreatedAtRoute("Get", new { id = licznikiDaneDto.Id }, licznikiDaneDto);
         }
 
         [HttpPut]
@@ -56,7 +66,7 @@ namespace ContosoUniversity.Controllers
 
             if (licznikDane == null) return NotFound();
 
-            if (licznikDane.Id != null) _iServiceLicznikDane.Delete((int) licznikDane.Id);
+            if (licznikDane.Id != null) _iServiceLicznikDane.Delete((int)licznikDane.Id);
 
             return NoContent();
         }

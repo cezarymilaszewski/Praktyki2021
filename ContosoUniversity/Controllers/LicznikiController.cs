@@ -26,15 +26,15 @@ namespace ContosoUniversity.Controllers
 
             if (licznik == null) return NotFound();
 
-            return Ok(licznik);
+            return licznik;
         }
-
+        [Route("Add")]
         [HttpPost]
         public ActionResult<LicznikiDto> Create(LicznikiDto licznikiDto)
         {
             _iServiceLicznik.Add(licznikiDto.Nazwa, licznikiDto.Typ);
 
-            return CreatedAtRoute("Get", new {id = licznikiDto.Id}, licznikiDto);
+            return CreatedAtRoute("Get", new { id = licznikiDto.Id }, licznikiDto);
         }
 
         [HttpPut("{id:int}")]
@@ -56,7 +56,7 @@ namespace ContosoUniversity.Controllers
 
             if (licznik == null) return NotFound();
 
-            if (licznik.Id != null) _iServiceLicznik.Delete((int) licznik.Id);
+            if (licznik.Id != null) _iServiceLicznik.Delete((int)licznik.Id);
 
             return NoContent();
         }

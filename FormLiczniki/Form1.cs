@@ -24,13 +24,15 @@ namespace FormLiczniki
             string nazwa = textBoxNazwa.Text;
             string typ = textBoxTyp.Text;
             LicznikiDto nowyLicznikDto = new LicznikiDto(null, nazwa, typ);
-            
+            Add(nowyLicznikDto);
+
         }
         public IRestResponse<LicznikiDto> Add(LicznikiDto licznikDto)
         {
-            var restClient = new RestClient(.ClientMagnumWebService);
-            var request = new RestRequest($"api/Dostawy/Get/{id}", Method.GET);
-            var response = restClient.Get<DayDostawyDto>(request);
+            var restClient = new RestClient("http://localhost:44357");
+            var request = new RestRequest($"api/Liczniki/Add", Method.POST);
+            request.AddJsonBody(licznikDto);
+            var response = restClient.Post<LicznikiDto>(request);
             return response;
         }
     }

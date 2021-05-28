@@ -19,21 +19,21 @@ namespace ContosoUniversity.Controllers
         }
 
 
-        [HttpGet("{id:int}", Name = "Get")]
+        [HttpGet("{id:int}", Name = "budynki")]
         public ActionResult<BudynekDto> Get(int id)
         {
             var budynekDto = _iServiceBudynek.Get(id);
 
             if (budynekDto == null) return NotFound();
 
-            return Ok(budynekDto);
+            return budynekDto;
         }
 
         [HttpPost]
         public ActionResult<BudynekDto> Create(BudynekDto budynekDto)
         {
             _iServiceBudynek.Add(budynekDto);
-            return CreatedAtRoute("Get", new {id = budynekDto.Id}, budynekDto);
+            return CreatedAtRoute("Get", new { id = budynekDto.Id }, budynekDto);
         }
 
         [HttpPut("{id:int}")]
@@ -55,7 +55,7 @@ namespace ContosoUniversity.Controllers
 
             if (budynek == null) return NotFound();
 
-            if (budynek.Id != null) _iServiceBudynek.Delete((int) budynek.Id);
+            if (budynek.Id != null) _iServiceBudynek.Delete((int)budynek.Id);
 
             return NoContent();
         }
