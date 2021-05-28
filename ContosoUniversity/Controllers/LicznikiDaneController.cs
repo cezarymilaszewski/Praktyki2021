@@ -34,7 +34,7 @@ namespace ContosoUniversity.Controllers
         public ActionResult<LicznikiDaneDto> Create(LicznikiDaneDto licznikiDaneDto)
         {
            var Id =  _iServiceLicznikDane.Add(licznikiDaneDto);
-           return Ok(Get(Id));
+           return CreatedAtRoute("Get", new { id = licznikiDaneDto.Id }, licznikiDaneDto);
         }
 
         [HttpPut]
